@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task | <%= title %></title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="site-title">
+        <a href="/"><h1>Task List</h1></a>
+      </div>
+      <div class="create-task content">
+        <form for="title" action="/tasks" method="POST">
+          <label for="description" class="field">
+            <input
+              type="text"
+              id="description"
+              placeholder="Enter Task Description"
+              name="description"
+              required
+            />
+          </label>
+          <button>Submit</button>
+        </form>
+      </div>
+      <div class="tasks content">
+        <div class="task-title">
+          <h2>All Tasks</h2>
+        </div>
+        <div class="task-items">
+          <% if (tasks.length > 0){ %> <% tasks.forEach(task =>{ %>
+
+          <div class="items">
+            <h3 class="description"><%= task.description %></h3>
+            <p class="completed">
+              <%if(task.completed === false){%> Not completed <%} else {%>
+              Completed <%}%>
+            </p>
+            <a class="delete" data-doc="<%= task._id%>">
+              <img
+                src="/trashcan.svg"
+                alt="delete-button"
+                id="trash"
+                style="height: 30px"
+              />
+            </a>
+            <a class="put" data-doc="<%= task._id%>">
+              <img
+                src="/check.svg"
+                id="check"
+                alt="update-button"
+                style="height: 30px"
+              />
+            </a>
+          </div>
+
+          <% }) %> <% } else{%>
+          <p>there are no tasks to display</p>
+          <% }%>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.querySelectorAll("a.delete").forEach((trashcan) => {
+        trashcan.addEventListener("click", (e) => {
+          const endpoint = `/tasks/${trashcan.dataset.doc}`;
+
+          fetch(endpoint, {
+            method: "DELETE",
+          })
+            .then((response) => response.json())
+            .then((data) => (window.location.href = data.redirect))
+            .catch((err) => console.log(err));
+        });
+      });
+    </script>
+    <script>
+      document.querySelectorAll("a.put").forEach((upd) => {
+        upd.addEventListener("click", (e) => {
+          const endpoint = `/tasks/${upd.dataset.doc}`;
+
+          fetch(endpoint, {
+            method: "PUT",
+          })
+            .then((response) => response.json())
+            .then((data) => (window.location.href = data.redirect))
+            .catch((err) => console.log(err));
+        });
+      });
+    </script>
+  </body>
+</html>
