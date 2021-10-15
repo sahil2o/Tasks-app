@@ -40,22 +40,24 @@
               <%if(task.completed === false){%> Not completed <%} else {%>
               Completed <%}%>
             </p>
-            <a class="delete" data-doc="<%= task._id%>">
-              <img
-                src="/trashcan.svg"
-                alt="delete-button"
-                id="trash"
-                style="height: 30px"
-              />
-            </a>
-            <a class="put" data-doc="<%= task._id%>">
-              <img
-                src="/check.svg"
-                id="check"
-                alt="update-button"
-                style="height: 30px"
-              />
-            </a>
+            <div class="tc">
+              <a class="delete" data-doc="<%= task._id%>">
+                <img
+                  src="/trashcan.svg"
+                  alt="delete-button"
+                  id="trash"
+                  style="height: 30px"
+                />
+              </a>
+              <a class="put" data-doc="<%= task._id%>">
+                <img
+                  src="/check.svg"
+                  id="check"
+                  alt="update-button"
+                  style="height: 30px"
+                />
+              </a>
+            </div>
           </div>
 
           <% }) %> <% } else{%>

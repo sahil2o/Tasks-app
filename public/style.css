@@ -81,6 +81,7 @@ button {
 }
 
 .items {
+  display: flex;
   margin-top: 20px;
   color: white;
   padding: 6px;
@@ -88,11 +89,11 @@ button {
   border-radius: 10px;
   font-size: 1.2em;
   cursor: pointer;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-img#check {
-  transform: translate(342px, -64px);
-}
-img#trash {
-  transform: translate(374px, 8px);
+.tc {
+  display: flex;
+  justify-content: space-between;
 }

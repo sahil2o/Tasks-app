@@ -9,7 +9,7 @@ const taskRoutes = require('./routes/taskRoutes');
 const dbURI = 'mongodb+srv://Sahil:Sahil1234@cluster0.5kpgv.mongodb.net/TaskDb?retryWrites=true&w=majority';
 
 mongoose.connect(dbURI)
-  .then((result)=> app.listen(3000))
+  .then((result)=> app.listen(5000))
   .catch(err => console.log(err));
 
 //express app
